@@ -5,7 +5,10 @@ const ctx = canvas.getContext("2d");
 
 const bird = {
     x: canvas.width / 2,
-    y: canvas.height / 2,
+    y: canvas.height - 20,
+    velocity_x: 0,
+    velocity_y: 0,
+    friction: 0.9,
     curBodySprite: "./sprites/body.png",
     head : {
         width: 8,
@@ -27,6 +30,9 @@ const bird = {
         walk: false,
     }
 }
+
+const platforms = [];
+
 const modeSize = Object.keys(bird.mode).length;
 let curModeNum = null;
 

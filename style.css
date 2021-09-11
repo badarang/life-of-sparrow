@@ -4,9 +4,16 @@
 }
 .container {
 	width: 100vw;
-	height: 100wh;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	
+}
+
+.game__canvas {
+	width: 810px;
+	height: 500px;
+	border: 2px solid black;
 }
