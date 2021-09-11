@@ -1,7 +1,7 @@
 const canvas = document.querySelector(".game__canvas");
 const ctx = canvas.getContext("2d");
-//ctx.fillStyle = "red";
-//ctx.fillRect(10,10,50,50);
+const canvasWidth = 810;
+const canvasHeight = 500;
 
 const bird = {
     x: canvas.width / 2,
@@ -32,11 +32,39 @@ const bird = {
 }
 
 const platforms = [];
+platformNum = 4;
+
+const createPlatform = () => {
+    // 맨 밑 플랫폼
+    platforms.push({
+        x: 0,
+        y: 0,
+        width: canvasWidth,
+        height: canvasHeight / 20,
+    });
+    // 공중 플랫폼
+    directions = [[1,1], [-1,1], [-1,-1], [1,-1]];
+    for (var i=0; i<platformNum; i++) {
+        platforms.push(
+            {
+                x: canvasWidth / 2 + canvasWidth / 4 * directions[i][0],
+                y: canvasHeight / 2 + canvasHeight / 4 * directions[i][1],
+                width: canvasWidth / 6,
+                height: canvasHeight / 10,
+            }
+        );
+    }
+}
+
+const drawCanvas = () => {
+    ctx.fillStyle = "#F0F8FF";
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+}
 
 const modeSize = Object.keys(bird.mode).length;
 let curModeNum = null;
 
-const birdDraw = () => {
+const drawBird = () => {
     const imageScale = 1;
     //Body Draw
     const imgBody = new Image();
@@ -70,7 +98,7 @@ const changeSpriteFlying = () => {
 }
 
 const main = () => {
-    birdDraw();
+    drawBird();
     requestAnimationFrame(main);
 }
 
