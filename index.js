@@ -10,6 +10,7 @@ const bird = {
     velocity_y: 0,
     friction: 0.9,
     gravity: 0.9,
+    isJump: false,
     curBodySprite: "./sprites/body.png",
     head : {
         width: 8,
@@ -28,7 +29,7 @@ const bird = {
         molting: false,
         eating: false,
         flying: false,
-        walk: false,
+        walking: false,
     }
 }
 const modeSize = Object.keys(bird.mode).length;
@@ -136,6 +137,24 @@ const drawBird = () => {
     }
 }
 
+const updateBird = () => {
+    if (bird.mode.idle) {
+
+    }
+    else if (bird.mode.molting) {
+
+    }
+    else if (bird.mode.eating) {
+
+    }
+    else if (bird.mode.flying) {
+
+    }
+    else if (bird.mode.walking) {
+
+    }
+}
+
 const resetMode = () => {
     Object.keys(bird.mode).forEach((v) => {
         bird.mode[v] = false; //배열로 접근해야 해당 값의 주소로 접근하기 때문에 값이 바뀜
@@ -182,7 +201,7 @@ const changeMode = () => {
             bird.mode.flying = true;
         } break;
         case 4: {
-            bird.mode.walk = true;
+            bird.mode.walking = true;
         } break;
         default: break;
     }
