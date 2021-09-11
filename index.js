@@ -27,9 +27,11 @@ const bird = {
         walk: false,
     }
 }
+const modeSize = Object.keys(bird.mode).length;
+let curModeNum = null;
 
 const birdDraw = () => {
-    const imageScale = 4;
+    const imageScale = 1;
     //Body Draw
     const imgBody = new Image();
     imgBody.src = bird.curBodySprite;
@@ -61,5 +63,49 @@ const changeSpriteFlying = () => {
     }
 }
 
-setInterval(changeSpriteFlying, 60);
-setInterval(birdDraw, 30);
+const main = () => {
+    birdDraw();
+    requestAnimationFrame(main);
+}
+
+const changeMode = () => {
+    let min = 5, max = 15;
+    let rand = Math.floor(Math.random() * (max - min + 1) + min); 
+    resetMode();
+    
+    let nextModeNum = Math.floor(Math.random() * modeSize);
+
+    switch(nextModeNum) {
+        case 0: {
+            bird.mode.idle = true;
+        } break;
+        case 1: {
+            bird.mode.molting = true;
+        } break;
+        case 2: {
+            bird.mode.eating = true;
+        } break;
+        case 3: {
+            bird.mode.flying = true;
+        } break;
+        case 4: {
+            bird.mode.walk = true;
+        } break;
+        default: break;
+    }
+
+    setTimeout(changeMode, rand * 1000);
+  }
+  
+
+window.onload = () => {
+    main();
+    changeMode();
+}
+
+const showMode = () => {
+    Object.keys(bird.mode).forEach((v) => {
+        console.log(v, bird.mode[v]);
+    })
+}
+
