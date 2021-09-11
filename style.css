@@ -13,7 +13,5 @@
 }
 
 .game__canvas {
-	width: 810px;
-	height: 500px;
 	border: 2px solid black;
 }
